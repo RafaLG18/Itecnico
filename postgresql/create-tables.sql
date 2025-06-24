@@ -18,3 +18,18 @@ ALTER TABLE
     "servico" ADD PRIMARY KEY("id");
 ALTER TABLE
     "servico" ADD CONSTRAINT "id_usuario" FOREIGN KEY("id") REFERENCES "usuario"("id");
+CREATE TABLE "pedido"(
+    "id" SERIAL NOT NULL,
+    "id_usuario_cliente" INTEGER NOT NULL,
+    "id_usuario_servidor" INTEGER NOT NULL,
+    "id_servico" INTEGER NOT NULL,
+    "data" VARCHAR(255) NOT NULL,
+);
+ALTER TABLE
+    "servico" ADD PRIMARY KEY("id");
+ALTER TABLE
+    "servico" ADD CONSTRAINT "id_usuario_cliente" FOREIGN KEY("id") REFERENCES "usuario"("id");
+ALTER TABLE
+    "servico" ADD CONSTRAINT "id_usuario_servidor" FOREIGN KEY("id") REFERENCES "usuario"("id");
+ALTER TABLE
+    "servico" ADD CONSTRAINT "id_servico" FOREIGN KEY("id") REFERENCES "servico"("id");        
