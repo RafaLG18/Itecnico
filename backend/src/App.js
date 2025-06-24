@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 // Rotas da API
 import cadastroUsuarioRoutes from "./routes/cadastroUsuarioRoutes.js";
 import cadastroServicoRoutes from "./routes/cadastroServicoRoutes.js";
+import cadastroPedidoRoutes from "./routes/cadastroPedidoRoutes.js";
 import loginRoutes from "./routes/loginRoutes.js";
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, "../../frontend")));
 
 app.use("/api/cadastro-usuario", cadastroUsuarioRoutes);
 app.use("/api/cadastro-servico", cadastroServicoRoutes);
+app.use("/api/cadastro-pedido", cadastroPedidoRoutes);
 app.use("/api/login", loginRoutes);
 
 export default app; 
