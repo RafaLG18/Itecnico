@@ -1,0 +1,20 @@
+CREATE TABLE "usuario"(
+    "id" SERIAL NOT NULL,
+    "nome" VARCHAR(255) NOT NULL,
+    "cpf" VARCHAR(255) NOT NULL,
+    "senha" VARCHAR(255) NOT NULL,
+    "tipo" VARCHAR(255) NOT NULL
+);
+ALTER TABLE
+    "usuario" ADD PRIMARY KEY("id");
+CREATE TABLE "servico"(
+    "id" SERIAL NOT NULL,
+    "id_usuario" INTEGER NOT NULL,
+    "nome" VARCHAR(255) NOT NULL,
+    "descricao" VARCHAR(255) NOT NULL,
+    "preco" INTEGER NOT NULL
+);
+ALTER TABLE
+    "servico" ADD PRIMARY KEY("id");
+ALTER TABLE
+    "servico" ADD CONSTRAINT "id_usuario" FOREIGN KEY("id") REFERENCES "usuario"("id");
