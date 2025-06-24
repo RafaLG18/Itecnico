@@ -38,3 +38,5 @@ class Pedido{
         this._data=value
     }
 }
+
+export default Pedido
