@@ -10,7 +10,7 @@ class PedidoRepository{
     this.client = this.conn.getClient();
   }
 
-  async setServico(servico) {
+  async setPedido(pedido) {
 
     const query = `
       INSERT INTO pedido (id, id_usuario_cliente, id_usuario_servidor, id_servico, data)
@@ -18,11 +18,11 @@ class PedidoRepository{
     `;
     
     const values = [
-      servico.id,
-      servico.id_usuario_cliente,
-      servico.id_usuario_servidor,
-      servico.id_servico,
-      servico.data
+      pedido.id,
+      pedido.id_usuario_cliente,
+      pedido.id_usuario_servidor,
+      pedido.id_servico,
+      pedido.data
     ];
     console.log(values)
     try {
