@@ -27,7 +27,7 @@ const CadastroPedidoController = {
     console.log("Pedido cadastrado:", { id_usuario_cliente, id_usuario_servidor, id_servico, data });
     return res
       .status(201)
-      .json({ mensagem: "Pedido cadastrado com sucesso.",servico:nome });
+      .json({ mensagem: "Pedido cadastrado com sucesso." });
   },
 };
 

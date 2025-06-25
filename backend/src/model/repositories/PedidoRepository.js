@@ -7,12 +7,11 @@ class PedidoRepository{
   async setPedido(pedido) {
     let client
     const query = `
-      INSERT INTO pedido (id, id_usuario_cliente, id_usuario_servidor, id_servico, data)
-      VALUES($1, $2, $3, $4, $5)
+      INSERT INTO pedido (id_usuario_cliente, id_usuario_servidor, id_servico, data)
+      VALUES($1, $2, $3, $4)
     `;
     
     const values = [
-      pedido.id,
       pedido.id_usuario_cliente,
       pedido.id_usuario_servidor,
       pedido.id_servico,
