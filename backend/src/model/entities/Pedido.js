@@ -1,9 +1,9 @@
 class Pedido {
   constructor() {
     this._id = null;
-    this._id_servico = null;
+    this._id_servico_prestado = null;
     this._id_usuario_cliente = null;
-    this._id_usuario_servidor = null;
+    this._id_usuario_fornecedor = null;
     this._data = null;
     this._preco = null;
   }
@@ -14,11 +14,11 @@ class Pedido {
   set id(value) {
     this._id = value;
   }
-  get id_servico() {
-    return this._id_servico;
+  get id_servico_prestado() {
+    return this._id_servico_prestado;
   }
-  set id_servico(value) {
-    this._id_servico = value;
+  set id_servico_prestado(value) {
+    this._id_servico_prestado = value;
   }
   get id_usuario_cliente() {
     return this._id_usuario_cliente;
@@ -26,11 +26,11 @@ class Pedido {
   set id_usuario_cliente(value) {
     this._id_usuario_cliente = value;
   }
-  get id_usuario_servidor() {
-    return this._id_usuario_servidor;
+  get id_usuario_fornecedor() {
+    return this._id_usuario_fornecedor;
   }
-  set id_usuario_servidor(value) {
-    this._id_usuario_servidor = value;
+  set id_usuario_fornecedor(value) {
+    this._id_usuario_fornecedor = value;
   }
   get data() {
     return this._data;

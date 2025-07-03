@@ -1,42 +1,33 @@
 class ServicoGeral {
-    constructor() {
-        this._id = null;
-        this._id_prestador=null;
-        this._nome = null;
-        this._descricao = null;
-    }
+  constructor() {
+    this._id = null;
+    this._nome = null;
+    this._descricao = null;
+  }
 
-    get id() {
-        return this._id;
-    }
- 
-    set id(value) {
-        this._id = value;
-    }
-    get id_prestador() {
-        return this._id_prestador;
-    }
- 
-    set id_prestador(value) {
-        this._id_prestador = value;
-    }
+  get id() {
+    return this._id;
+  }
 
-    get nome() {
-        return this._nome;
-    }
+  set id(value) {
+    this._id = value;
+  }
 
-    set nome(value) {
-        this._nome = value;
-    }
+  get nome() {
+    return this._nome;
+  }
 
-    get descricao() {
-        return this._descricao;
-    }
+  set nome(value) {
+    this._nome = value;
+  }
 
-    set descricao(value) {
-        this._descricao = value;
-    }
+  get descricao() {
+    return this._descricao;
+  }
 
+  set descricao(value) {
+    this._descricao = value;
+  }
 }
 
-export default ServicoGeral
+export default ServicoGeral;
