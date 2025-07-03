@@ -1,9 +1,9 @@
 import express from "express";
-import CadastroServicoController from "../controllers/CadastroServicoController.js";
+import CadastroServicoGeralController from "../controllers/CadastroServicoGeralController.js";
 
 const router = express.Router();
 
 // POST /api/cadastro
-router.post("/", CadastroServicoController.cadastrarServico);
+router.post("/", CadastroServicoGeralController.cadastrarServicoGeral);
 
 export default router;

@@ -7,16 +7,27 @@ CREATE TABLE "usuario"(
 );
 ALTER TABLE "usuario" ADD PRIMARY KEY("id");
 
-CREATE TABLE "servico"(
+CREATE TABLE "servico_geral"(
     "id" SERIAL NOT NULL,
-    "id_usuario" INTEGER NOT NULL, -- ID do usuário que oferece o serviço
+    "id_prestador" INTEGER NOT NULL, -- ID do usuário que oferece o serviço
     "nome" VARCHAR(255) NOT NULL,
     "descricao" VARCHAR(255) NOT NULL,
     "preco" INTEGER NOT NULL -- Considerar DECIMAL ou NUMERIC para valores monetários
 );
 ALTER TABLE "servico" ADD PRIMARY KEY("id");
 -- Correção aqui: A chave estrangeira deve referenciar a coluna id_usuario na tabela servico
-ALTER TABLE "servico" ADD CONSTRAINT "fk_servico_usuario" FOREIGN KEY("id_usuario") REFERENCES "usuario"("id");
+ALTER TABLE "servico" ADD CONSTRAINT "fk_servico_usuario" FOREIGN KEY("id_prestador") REFERENCES "usuario"("id");
+
+CREATE TABLE "servico_geral_prestado"(
+    "id" SERIAL NOT NULL,
+    "id_prestador" INTEGER NOT NULL, -- ID do usuário que oferece o serviço
+    "nome" VARCHAR(255) NOT NULL,
+    "descricao" VARCHAR(255) NOT NULL,
+    "preco" INTEGER NOT NULL -- Considerar DECIMAL ou NUMERIC para valores monetários
+);
+ALTER TABLE "servico" ADD PRIMARY KEY("id");
+-- Correção aqui: A chave estrangeira deve referenciar a coluna id_usuario na tabela servico
+ALTER TABLE "servico" ADD CONSTRAINT "fk_servico_usuario" FOREIGN KEY("id_prestador") REFERENCES "usuario"("id");
 
 CREATE TABLE "pedido"(
     "id" SERIAL NOT NULL,

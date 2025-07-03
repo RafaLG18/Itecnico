@@ -1,17 +1,17 @@
 import repositorioGeral from "../model/repositories/repositorioGeral.js";
-import Servico from '../model/entities/Servico.js';
+import ServicoGeral from '../model/entities/ServicoGeral.js';
 const repo = new repositorioGeral();
 
-const CadastroServicoController = {
-  cadastrarServico: async (req, res) => {
+const CadastroServicoGeralController = {
+  cadastrarServicoGeral: async (req, res) => {
     const { id_usuario, nome, descricao, preco } = req.body;
   
-    var servico = new Servico();
+    var servicoGeral = new ServicoGeral();
     
-    servico.id_usuario=id_usuario;
-    servico.nome=nome;
-    servico.descricao=descricao;
-    servico.preco=preco;
+    servicoGeral.id_usuario=id_usuario;
+    servicoGeral.nome=nome;
+    servicoGeral.descricao=descricao;
+    servicoGeral.preco=preco;
 
 
     // Simulação de lógica — aqui você chamaria o repository, validaria etc.
@@ -23,13 +23,13 @@ const CadastroServicoController = {
 
     // Lógica de criação fictícia
     
-    await repo.addServico(servico);
+    await repo.addServico(servicoGeral);
     console.log("Servicos cadastrados");
     console.log("Servico cadastrado:", { id_usuario, nome,descricao,preco });
     return res
       .status(201)
-      .json({ mensagem: "Usuário cadastrado com sucesso.",servico:nome });
+      .json({ mensagem: "Usuário cadastrado com sucesso.",servicoGeral:nome });
   },
 };
 
-export default CadastroServicoController;
+export default CadastroServicoGeralController;

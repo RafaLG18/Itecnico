@@ -1,10 +1,9 @@
-class Servico {
+class ServicoGeral {
     constructor() {
         this._id = null;
-        this._id_usuario=null;
+        this._id_prestador=null;
         this._nome = null;
         this._descricao = null;
-        this._preco = null;
     }
 
     get id() {
@@ -14,12 +13,12 @@ class Servico {
     set id(value) {
         this._id = value;
     }
-    get id_usuario() {
-        return this._id_usuario;
+    get id_prestador() {
+        return this._id_prestador;
     }
  
-    set id_usuario(value) {
-        this._id_usuario = value;
+    set id_prestador(value) {
+        this._id_prestador = value;
     }
 
     get nome() {
@@ -38,13 +37,6 @@ class Servico {
         this._descricao = value;
     }
 
-    get preco() {
-        return this._preco;
-    }
-
-    set preco(value) {
-        this._preco = value;
-    }
 }
 
-export default Servico
+export default ServicoGeral
