@@ -49,3 +49,5 @@ class ServicoPrestado {
     return this._preco;
   }
 }
+
+export default ServicoPrestado;
