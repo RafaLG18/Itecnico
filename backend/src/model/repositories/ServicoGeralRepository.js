@@ -1,22 +1,21 @@
 import ConnectionManager from "./ConnectionManager.js";
-class ServicoRepository{
+class ServicoGeralRepository{
     constructor(){
         this.conn = new ConnectionManager();
     }
 
     
-  async setServico(servico) {
+  async setServicoGeral(servicoGeral) {
     let client;
     const query = `
-      INSERT INTO servico (id_usuario, nome, descricao, preco)
-      VALUES($1, $2, $3, $4)
+      INSERT INTO servico_geral (id_prestador, nome, descricao)
+      VALUES($1, $2, $3)
     `;
     
     const values = [
-      servico.id_usuario,
-      servico.nome,
-      servico.descricao,
-      servico.preco
+      servicoGeral.id_prestador,
+      servicoGeral.nome,
+      servicoGeral.descricao,
     ];
     console.log(values)
     try {
@@ -36,4 +35,4 @@ class ServicoRepository{
     await this.conn.disconnect();
   }
 }
-export default ServicoRepository
+export default ServicoGeralRepository
