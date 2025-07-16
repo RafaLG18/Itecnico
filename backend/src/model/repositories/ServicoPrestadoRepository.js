@@ -1,5 +1,9 @@
+import ConnectionManager from "./ConnectionManager.js";
+
 class ServicoPrestadoRepository {
-  constructor() {}
+  constructor() {
+    this.conn = new ConnectionManager();
+  }
   async setServicoPrestado(servicoPrestado) {
     let client;
     const query = `
@@ -9,7 +13,7 @@ class ServicoPrestadoRepository {
 
     const values = [
       servicoPrestado.id_prestador,
-      servicoPrestado.id_prestador,
+      servicoPrestado.id_servico_geral,
       servicoPrestado.nome,
       servicoPrestado.descricao,
       servicoPrestado.preco,

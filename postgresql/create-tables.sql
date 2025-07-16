@@ -10,7 +10,7 @@ ALTER TABLE "usuario" ADD PRIMARY KEY("id");
 CREATE TABLE "servico_geral"(
     "id" SERIAL NOT NULL,
     "nome" VARCHAR(255) NOT NULL,
-    "descricao" VARCHAR(255) NOT NULL,
+    "descricao" VARCHAR(255) NOT NULL
     -- "preco" INTEGER NOT NULL -- Considerar DECIMAL ou NUMERIC para valores monetários
 );
 ALTER TABLE "servico_geral" ADD PRIMARY KEY("id");

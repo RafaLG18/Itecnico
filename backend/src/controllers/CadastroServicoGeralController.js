@@ -12,7 +12,7 @@ const CadastroServicoGeralController = {
     servicoGeral.descricao = descricao;
 
     // Simulação de lógica — aqui você chamaria o repository, validaria etc.
-    if (!id_usuario || !nome || !descricao) {
+    if (!nome || !descricao) {
       return res
         .status(400)
         .json({ erro: "Todos os campos são obrigatórios." });
@@ -20,7 +20,7 @@ const CadastroServicoGeralController = {
 
     // Lógica de criação fictícia
 
-    await repo.addServico(servicoGeral);
+    await repo.addServicoGeral(servicoGeral);
     console.log("Servicos cadastrados");
     console.log("Servico cadastrado:", { nome, descricao });
     return res.status(201).json({
