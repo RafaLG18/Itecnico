@@ -23,7 +23,7 @@ const CadastroServicoPrestadoController = {
 
     // Lógica de criação fictícia
 
-    await repo.addServico(servicoPrestado);
+    await repo.addServicoPrestado(servicoPrestado);
     console.log("Servicos cadastrados");
     console.log("Servico cadastrado:", { nome, descricao });
     return res.status(201).json({

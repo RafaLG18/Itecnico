@@ -32,6 +32,32 @@ class UsuarioRepository {
     }
   }
 
+  async findByCpfAndSenha(cpf, senha) {
+    let client;
+    const query = `
+      SELECT id, nome, cpf, tipo
+      FROM usuario 
+      WHERE cpf = $1 AND senha = $2
+    `;
+    
+    try {
+      client = await this.conn.getClient();
+      const result = await client.query(query, [cpf, senha]);
+      
+      if (result.rows.length > 0) {
+        return result.rows[0];
+      }
+      return null;
+    } catch (err) {
+      console.error("Erro ao buscar usuário:", err);
+      throw err;
+    } finally {
+      if (client) {
+        client.release();
+      }
+    }
+  }
+
   async close() {
     await this.conn.disconnect();
   }
