@@ -39,3 +39,21 @@ ALTER TABLE "pedido" ADD PRIMARY KEY("id"); -- Correção: Definindo PK para a t
 ALTER TABLE "pedido" ADD CONSTRAINT "fk_pedido_usuario_cliente" FOREIGN KEY("id_usuario_cliente") REFERENCES "usuario"("id");
 ALTER TABLE "pedido" ADD CONSTRAINT "fk_pedido_usuario_prestador" FOREIGN KEY("id_usuario_prestador") REFERENCES "usuario"("id");
 ALTER TABLE "pedido" ADD CONSTRAINT "fk_pedido_servico_prestado" FOREIGN KEY("id_servico_prestado") REFERENCES "servico_prestado"("id");
+
+-- Populando tabela servico_geral com categorias padrão
+INSERT INTO "servico_geral" ("nome", "descricao") VALUES
+('Conserto de Computador', 'Reparo e manutenção de computadores desktop e notebook'),
+('Instalação de Software', 'Instalação e configuração de programas e sistemas operacionais'),
+('Manutenção de Rede', 'Configuração e reparo de redes domésticas e empresariais'),
+('Reparo de Celular', 'Conserto de smartphones e tablets'),
+('Formatação de PC', 'Formatação e reinstalação de sistema operacional'),
+('Recuperação de Dados', 'Recuperação de arquivos perdidos ou corrompidos'),
+('Instalação de Antivírus', 'Instalação e configuração de softwares de segurança'),
+('Configuração de Email', 'Configuração de contas de email em dispositivos'),
+('Backup de Dados', 'Criação e configuração de sistemas de backup'),
+('Suporte Técnico Remoto', 'Assistência técnica através de acesso remoto'),
+('Montagem de PC', 'Montagem e configuração de computadores personalizados'),
+('Upgrade de Hardware', 'Atualização de componentes de hardware'),
+('Instalação de Impressora', 'Configuração e instalação de impressoras'),
+('Configuração de Wi-Fi', 'Instalação e configuração de redes sem fio'),
+('Limpeza de PC', 'Limpeza física e otimização de desempenho');
