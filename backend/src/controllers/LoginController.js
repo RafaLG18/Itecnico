@@ -1,17 +1,35 @@
+import RepositorioGeral from "../model/repositories/repositorioGeral.js";
+
 const LoginController = {
-  fazerLogin: (req, res) => {
-    const { email, senha } = req.body;
+  fazerLogin: async (req, res) => {
+    try {
+      const { cpf, senha } = req.body;
+      
+      console.log(`[LOGIN] Tentativa de login - CPF: ${cpf} - ${new Date().toISOString()}`);
 
-    // Simulação de autenticação
-    if (!email || !senha) {
-      return res.status(400).json({ erro: "E-mail e senha são obrigatórios." });
-    }
+      if (!cpf || !senha) {
+        console.log(`[LOGIN] Login negado - Dados incompletos - CPF: ${cpf}`);
+        return res.status(400).json({ erro: "CPF e senha são obrigatórios." });
+      }
 
-    // Aqui você chamaria o banco de dados e validaria credenciais
-    if (email === "admin@exemplo.com" && senha === "123456") {
-      return res.status(200).json({ mensagem: "Login realizado com sucesso." });
-    } else {
-      return res.status(401).json({ erro: "Credenciais inválidas." });
+      const repositorio = new RepositorioGeral();
+      const usuario = await repositorio.findUserByCpfAndSenha(cpf, senha);
+
+      if (usuario) {
+        console.log(`[LOGIN] Login bem-sucedido - CPF: ${cpf} - Tipo: ${usuario.tipo} - Nome: ${usuario.nome}`);
+        return res.status(200).json({ 
+          mensagem: "Login realizado com sucesso.",
+          tipo: usuario.tipo,
+          id: usuario.id,
+          nome: usuario.nome
+        });
+      } else {
+        console.log(`[LOGIN] Login falhado - Credenciais inválidas - CPF: ${cpf}`);
+        return res.status(401).json({ erro: "Credenciais inválidas." });
+      }
+    } catch (error) {
+      console.error(`[LOGIN] Erro no login - CPF: ${req.body?.cpf} - Erro:`, error);
+      return res.status(500).json({ erro: "Erro interno do servidor." });
     }
   }
 };

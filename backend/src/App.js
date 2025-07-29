@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url"; // Import fileURLToPath from the 'url' module
-
+import cors from "cors";
 // Get __filename and __dirname in ES Module scope
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,9 +15,9 @@ import loginRoutes from "./routes/loginRoutes.js";
 
 const app = express();
 app.use(express.json());
-
+app.use(cors())
 // Servir o frontend
-app.use(express.static(path.join(__dirname, "../../frontend")));
+// app.use(express.static(path.join(__dirname, "../../frontend")));
 
 app.use("/api/cadastro-usuario", cadastroUsuarioRoutes);
 app.use("/api/cadastro-servico-geral", cadastroServicoGeralRoutes);

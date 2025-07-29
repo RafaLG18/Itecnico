@@ -24,7 +24,7 @@ export default function CadastroPrestador(){
         return newErrors;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const validationErrors = validate();
         if (Object.keys(validationErrors).length > 0) {
@@ -34,7 +34,20 @@ export default function CadastroPrestador(){
 
         // Aqui você enviaria os dados para o backend
         console.log('Dados do prestador:', formData);
-        navigate('/');
+        try {
+            const response = await fetch("http://127.0.0.1:3001/api/cadastro-usuario", {
+                method: "POST",
+                // Data will be serialized and sent as json
+                body: JSON.stringify(formData),
+                // tell the server we're sending JSON
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+        } catch (error){
+            console.error(error)
+        }
+        navigate('/login');
     };
 
     return (
@@ -93,7 +106,7 @@ export default function CadastroPrestador(){
                                     <button
                                         type="button"
                                         className="btn btn-outline-secondary"
-                                        onClick={() => navigate('/')}
+                                        onClick={() => navigate('/api/login')}
                                     >
                                         Voltar
                                     </button>

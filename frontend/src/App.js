@@ -9,6 +9,9 @@ import CadastroPrestador from './pages/CadastroPrestador';
 import Login from './pages/Login';
 import CadastroServico from './pages/CadastrarServico';
 import SolicitaServico from './pages/SolicitaServicos';
+import TelaHomeCliente from './pages/TelaHomeCliente';
+import TelaHomePrestador from './pages/TelaHomePrestador';
+import MeusServicos from './pages/MeusServicos';
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
         <Route path="/cadastroPrestador" element={<CadastroPrestador />} />
         <Route path="/cadastroPrestador/cadastroServico" element={<CadastroServico />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/homeCliente" element={<TelaHomeCliente />} />
+        <Route path="/homePrestador" element={<TelaHomePrestador />} />
+        <Route path="/meus-servicos" element={<MeusServicos />} />
       </Routes>
     </BrowserRouter>
 

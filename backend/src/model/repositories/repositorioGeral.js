@@ -22,5 +22,9 @@ class repositorioGeral {
   async addPedido(pedido) {
     await this.pedidoRepository.setPedido(pedido);
   }
+  
+  async findUserByCpfAndSenha(cpf, senha) {
+    return await this.userRepository.findByCpfAndSenha(cpf, senha);
+  }
 }
 export default repositorioGeral;

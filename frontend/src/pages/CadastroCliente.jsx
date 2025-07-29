@@ -24,7 +24,7 @@ export default function CadastroCliente() {
         return newErrors;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const validationErrors = validate();
         if (Object.keys(validationErrors).length > 0) {
@@ -34,7 +34,20 @@ export default function CadastroCliente() {
 
         // Aqui você enviaria os dados para o backend
         console.log('Dados do cliente:', formData);
-        navigate('/');
+        try {
+            const response = await fetch("http://localhost:3001/api/cadastro-usuario", {
+                method: "POST",
+                // Data will be serialized and sent as json
+                body: JSON.stringify(formData),
+                // tell the server we're sending JSON
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+        } catch (error){
+            console.error(error)
+        }
+        navigate('/login');
     };
 
     return (
@@ -86,7 +99,7 @@ export default function CadastroCliente() {
                                     {errors.senha && <div className="invalid-feedback">{errors.senha}</div>}
                                 </div>
 
-                               <div className="d-grid gap-2">
+                                <div className="d-grid gap-2">
                                     <button type="submit" className="btn btn-primary btn-lg">
                                         Cadastrar
                                     </button>
