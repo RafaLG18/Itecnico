@@ -13,16 +13,16 @@ export default function TelaHomePrestador() {
     const carregarServicosSolicitados = async () => {
         try {
             // Aqui você faria a requisição para buscar os serviços solicitados
-            // const response = await fetch('http://localhost:3001/api/pedidos-prestador');
-            // const data = await response.json();
-            // setServicosSolicitados(data);
+            const response = await fetch('http://localhost:3001/api/pedidos-prestador');
+            const data = await response.json();
+            setServicosSolicitados(data);
             
             // Dados simulados para demonstração
-            setServicosSolicitados([
-                { id: 1, cliente: 'João Silva', servico: 'Conserto de Computador', data: '2025-01-29', preco: 150 },
-                { id: 2, cliente: 'Maria Santos', servico: 'Instalação de Software', data: '2025-01-28', preco: 80 },
-                { id: 3, cliente: 'Pedro Costa', servico: 'Manutenção de Rede', data: '2025-01-27', preco: 200 }
-            ]);
+            // setServicosSolicitados([
+            //     { id: 1, cliente: 'João Silva', servico: 'Conserto de Computador', data: '2025-01-29', preco: 150 },
+            //     { id: 2, cliente: 'Maria Santos', servico: 'Instalação de Software', data: '2025-01-28', preco: 80 },
+            //     { id: 3, cliente: 'Pedro Costa', servico: 'Manutenção de Rede', data: '2025-01-27', preco: 200 }
+            // ]);
         } catch (error) {
             console.error('Erro ao carregar serviços solicitados:', error);
         } finally {

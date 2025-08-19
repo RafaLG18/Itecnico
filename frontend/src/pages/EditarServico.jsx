@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function CadastroServico() {
+export default function EditarServico() {
     const navigate = useNavigate();
+    const { id } = useParams();
     const [servicosGerais, setServicosGerais] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [loadingServico, setLoadingServico] = useState(true);
     const [formData, setFormData] = useState({
         id_servico_geral: '',
         nome: '',
@@ -16,7 +18,8 @@ export default function CadastroServico() {
     useEffect(() => {
         carregarServicosGerais();
         obterIdPrestador();
-    }, []);
+        carregarServico();
+    }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const carregarServicosGerais = async () => {
         try {
@@ -32,14 +35,37 @@ export default function CadastroServico() {
         }
     };
 
+    const carregarServico = async () => {
+        try {
+            const response = await fetch(`http://localhost:3001/api/cadastro-servico-prestado/${id}`);
+            const data = await response.json();
+            
+            if (response.ok && data.servico) {
+                const servico = data.servico;
+                setFormData({
+                    id_servico_geral: servico.id_servico_geral || '',
+                    nome: servico.nome || '',
+                    descricao: servico.descricao || '',
+                    preco: servico.preco || ''
+                });
+            } else {
+                alert('Erro ao carregar serviço: ' + (data.erro || 'Serviço não encontrado'));
+                navigate('/meus-servicos');
+            }
+        } catch (error) {
+            console.error('Erro ao carregar serviço:', error);
+            alert('Erro ao carregar serviço. Tente novamente.');
+            navigate('/meus-servicos');
+        } finally {
+            setLoadingServico(false);
+        }
+    };
+
     const obterIdPrestador = () => {
-        // Aqui você obteria o ID do prestador logado
-        // Por exemplo, do localStorage, context, ou sessão
         const prestadorLogado = localStorage.getItem('prestadorId') || sessionStorage.getItem('prestadorId');
         if (prestadorLogado) {
             setIdPrestador(prestadorLogado);
         } else {
-            // ID temporário para demonstração - substituir pela lógica real
             setIdPrestador(1);
         }
     };
@@ -61,8 +87,8 @@ export default function CadastroServico() {
         }
 
         try {
-            const response = await fetch('http://localhost:3001/api/cadastro-servico-prestado', {
-                method: 'POST',
+            const response = await fetch(`http://localhost:3001/api/cadastro-servico-prestado/${id}`, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -74,22 +100,30 @@ export default function CadastroServico() {
             });
 
             if (response.ok) {
-                alert('Serviço cadastrado com sucesso!');
-                setFormData({
-                    id_servico_geral: '',
-                    nome: '',
-                    descricao: '',
-                    preco: ''
-                });
+                alert('Serviço atualizado com sucesso!');
+                navigate('/meus-servicos');
             } else {
                 const errorData = await response.json();
-                alert('Erro ao cadastrar serviço: ' + (errorData.erro || 'Erro desconhecido'));
+                alert('Erro ao atualizar serviço: ' + (errorData.erro || 'Erro desconhecido'));
             }
         } catch (error) {
-            console.error('Erro ao cadastrar serviço:', error);
-            alert('Erro ao cadastrar serviço. Tente novamente.');
+            console.error('Erro ao atualizar serviço:', error);
+            alert('Erro ao atualizar serviço. Tente novamente.');
         }
     };
+
+    if (loadingServico) {
+        return (
+            <div className="container-fluid vh-100 bg-light d-flex justify-content-center align-items-center">
+                <div className="text-center">
+                    <div className="spinner-border text-primary" role="status">
+                        <span className="visually-hidden">Carregando...</span>
+                    </div>
+                    <p className="mt-2">Carregando dados do serviço...</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="container-fluid vh-100 bg-light">
@@ -97,10 +131,10 @@ export default function CadastroServico() {
                 {/* Header */}
                 <div className="col-12 bg-primary text-white py-3">
                     <div className="d-flex justify-content-between align-items-center">
-                        <h2 className="mb-0">Cadastrar Novo Serviço</h2>
+                        <h2 className="mb-0">Editar Serviço</h2>
                         <button 
                             className="btn btn-outline-light"
-                            onClick={() => navigate('/homePrestador')}
+                            onClick={() => navigate('/meus-servicos')}
                         >
                             <i className="fas fa-arrow-left me-2"></i>
                             Voltar
@@ -113,10 +147,10 @@ export default function CadastroServico() {
                     <div className="row justify-content-center">
                         <div className="col-md-8 col-lg-6">
                             <div className="card shadow">
-                                <div className="card-header bg-success text-white">
+                                <div className="card-header bg-warning text-white">
                                     <h5 className="mb-0">
-                                        <i className="fas fa-plus-circle me-2"></i>
-                                        Dados do Serviço
+                                        <i className="fas fa-edit me-2"></i>
+                                        Editar Dados do Serviço
                                     </h5>
                                 </div>
                                 <div className="card-body">
@@ -127,6 +161,8 @@ export default function CadastroServico() {
                                                 <i className="fas fa-user-circle me-2"></i>
                                                 <div>
                                                     <strong>Prestador:</strong> ID #{idPrestador || 'Carregando...'}
+                                                    <br />
+                                                    <small>Editando serviço ID #{id}</small>
                                                 </div>
                                             </div>
                                         </div>
@@ -212,13 +248,13 @@ export default function CadastroServico() {
                                             <button 
                                                 type="button" 
                                                 className="btn btn-outline-secondary me-md-2"
-                                                onClick={() => navigate('/homePrestador')}
+                                                onClick={() => navigate('/meus-servicos')}
                                             >
                                                 Cancelar
                                             </button>
-                                            <button type="submit" className="btn btn-success">
+                                            <button type="submit" className="btn btn-warning">
                                                 <i className="fas fa-save me-2"></i>
-                                                Cadastrar Serviço
+                                                Atualizar Serviço
                                             </button>
                                         </div>
                                     </form>

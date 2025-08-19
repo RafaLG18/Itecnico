@@ -106,7 +106,7 @@ export default function CadastroPrestador(){
                                     <button
                                         type="button"
                                         className="btn btn-outline-secondary"
-                                        onClick={() => navigate('/api/login')}
+                                        onClick={() => navigate('/')}
                                     >
                                         Voltar
                                     </button>
