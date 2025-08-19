@@ -96,6 +96,9 @@ Itecnico/
 - Cadastro de usuário
 - Login no sistema
 - Cadastro de serviços oferecidos
+- Visualização dos próprios serviços
+- **Edição de serviços existentes** ✨
+- Ativação/desativação de serviços
 - Gerenciamento de pedidos
 
 ## 📡 API Endpoints
@@ -106,9 +109,15 @@ Itecnico/
 ### Usuários
 - `POST /api/cadastro-usuario` - Cadastro de usuários
 
-### Serviços
-- `GET/POST /api/cadastro-servico-geral` - Serviços gerais
-- `GET/POST /api/cadastro-servico-prestado` - Serviços prestados
+### Serviços Gerais
+- `GET /api/cadastro-servico-geral` - Listar categorias de serviços
+- `POST /api/cadastro-servico-geral` - Criar nova categoria
+
+### Serviços Prestados
+- `GET /api/cadastro-servico-prestado` - Listar todos os serviços
+- `GET /api/cadastro-servico-prestado/:id` - **Buscar serviço por ID** ✨
+- `POST /api/cadastro-servico-prestado` - Cadastrar novo serviço
+- `PUT /api/cadastro-servico-prestado/:id` - **Atualizar serviço existente** ✨
 
 ### Pedidos
 - `GET/POST /api/cadastro-pedido` - Gerenciamento de pedidos
@@ -132,7 +141,7 @@ docker-compose up -d
 ```bash
 cd backend/
 npm install
-npm start
+node src/main.js
 ```
 
 O backend estará rodando em `http://localhost:3001`
@@ -167,8 +176,12 @@ As tabelas são criadas automaticamente através do script `create-tables.sql` d
 - `/cadastro` - Seleção de tipo de cadastro
 - `/cadastroCliente` - Cadastro de cliente
 - `/cadastroPrestador` - Cadastro de prestador
+- `/homeCliente` - Dashboard do cliente
+- `/homePrestador` - Dashboard do prestador
 - `/cadastroCliente/solicitaServico` - Solicitação de serviços
 - `/cadastroPrestador/cadastroServico` - Cadastro de serviços
+- `/meus-servicos` - **Lista de serviços do prestador** ✨
+- `/editar-servico/:id` - **Edição de serviços existentes** ✨
 
 ## 🏗️ Arquitetura
 
@@ -185,7 +198,7 @@ As tabelas são criadas automaticamente através do script `create-tables.sql` d
 ## 📝 Scripts Disponíveis
 
 ### Backend
-- `npm start` - Inicia o servidor
+- `node src/main.js` - Inicia o servidor
 
 ### Frontend
 - `npm start` - Inicia em modo desenvolvimento
