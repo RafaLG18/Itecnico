@@ -11,7 +11,7 @@ class repositorioGeral {
     this.pedidoRepository = new PedidoRepository();
   }
   async addUser(usuario) {
-    this.userRepository.setUsuario(usuario);
+    await this.userRepository.setUsuario(usuario);
   }
   async addServicoGeral(servicoGeral) {
     await this.geralServiceRepository.setServicoGeral(servicoGeral);
@@ -25,6 +25,19 @@ class repositorioGeral {
   
   async findUserByCpfAndSenha(cpf, senha) {
     return await this.userRepository.findByCpfAndSenha(cpf, senha);
+  }
+
+  async getServicosPrestados() {
+    return await this.prestadoServiceRepository.getServicosPrestado();
+  }
+  async getServicosGeral() {
+    return await this.geralServiceRepository.getServicoGeral();
+  }
+  async getServicoPrestadoById(id) {
+    return await this.prestadoServiceRepository.getServicoPrestadoById(id);
+  }
+  async updateServicoPrestado(id, servicoPrestado) {
+    return await this.prestadoServiceRepository.updateServicoPrestado(id, servicoPrestado);
   }
 }
 export default repositorioGeral;

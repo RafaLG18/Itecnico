@@ -26,6 +26,25 @@ class ServicoGeralRepository {
     }
   }
 
+  async getServicoGeral(){
+    let client;
+    const query = `
+      SELECT * FROM servico_geral`;
+    try {
+      client = await this.conn.getClient();
+      const result = await client.query(query);
+      return result.rows;
+    } catch (err) {
+      console.error("Erro ao buscar servicos gerais", err);
+      throw err;
+    } finally {
+      if (client) {
+        client.release();
+      }
+    }
+      
+  }
+
   async close() {
     await this.conn.disconnect();
   }

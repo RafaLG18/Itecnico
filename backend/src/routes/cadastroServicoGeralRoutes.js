@@ -5,5 +5,6 @@ const router = express.Router();
 
 // POST /api/cadastro
 router.post("/", CadastroServicoGeralController.cadastrarServicoGeral);
+router.get("/", CadastroServicoGeralController.getServicoGeral);
 
 export default router;
