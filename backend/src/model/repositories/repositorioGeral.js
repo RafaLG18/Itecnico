@@ -39,5 +39,17 @@ class repositorioGeral {
   async updateServicoPrestado(id, servicoPrestado) {
     return await this.prestadoServiceRepository.updateServicoPrestado(id, servicoPrestado);
   }
+
+  async getPedidosByPrestador(id_prestador) {
+    return await this.pedidoRepository.getPedidosByPrestador(id_prestador);
+  }
+
+  async getPedidosByCliente(id_cliente) {
+    return await this.pedidoRepository.getPedidosByCliente(id_cliente);
+  }
+
+  async deletePedido(id) {
+    return await this.pedidoRepository.deletePedido(id);
+  }
 }
 export default repositorioGeral;

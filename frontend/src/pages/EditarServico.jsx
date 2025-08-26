@@ -114,93 +114,91 @@ export default function EditarServico() {
 
     if (loadingServico) {
         return (
-            <div className="container-fluid vh-100 bg-light d-flex justify-content-center align-items-center">
+            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex justify-center items-center">
                 <div className="text-center">
-                    <div className="spinner-border text-primary" role="status">
-                        <span className="visually-hidden">Carregando...</span>
+                    <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-gray-400 mx-auto mb-4">
                     </div>
-                    <p className="mt-2">Carregando dados do serviço...</p>
+                    <p className="text-xl text-gray-300 font-medium">Carregando dados do serviço...</p>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="container-fluid vh-100 bg-light">
-            <div className="row h-100">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+            <div className="h-full">
                 {/* Header */}
-                <div className="col-12 bg-primary text-white py-3">
-                    <div className="d-flex justify-content-between align-items-center">
-                        <h2 className="mb-0">Editar Serviço</h2>
+                <div className="w-full bg-gray-800/80 backdrop-blur-md border-b border-gray-700/50 shadow-2xl">
+                    <div className="flex justify-between items-center px-8 py-6">
+                        <div>
+                            <h1 className="text-3xl font-bold text-white tracking-wide">Editar Serviço</h1>
+                            <p className="text-gray-300 font-medium">Atualize as informações do seu serviço</p>
+                        </div>
                         <button 
-                            className="btn btn-outline-light"
+                            className="bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-800 text-white px-6 py-3 rounded-2xl transition-all duration-300 transform hover:scale-105 font-medium shadow-lg"
                             onClick={() => navigate('/meus-servicos')}
                         >
-                            <i className="fas fa-arrow-left me-2"></i>
-                            Voltar
+                            ← Voltar
                         </button>
                     </div>
                 </div>
 
                 {/* Content */}
-                <div className="col-12 p-4">
-                    <div className="row justify-content-center">
-                        <div className="col-md-8 col-lg-6">
-                            <div className="card shadow">
-                                <div className="card-header bg-warning text-white">
-                                    <h5 className="mb-0">
-                                        <i className="fas fa-edit me-2"></i>
-                                        Editar Dados do Serviço
-                                    </h5>
+                <div className="w-full p-8">
+                    <div className="flex justify-center">
+                        <div className="w-full max-w-2xl">
+                            <div className="bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-2xl shadow-gray-900/50 border border-gray-700/50 ring-1 ring-gray-600/20">
+                                <div className="bg-gradient-to-r from-gray-700 to-gray-800 text-white px-8 py-6 rounded-t-2xl">
+                                    <h2 className="text-2xl font-bold tracking-wide">
+                                        📝 Editar Dados do Serviço
+                                    </h2>
                                 </div>
-                                <div className="card-body">
-                                    <form onSubmit={handleSubmit}>
+                                <div className="p-8">
+                                    <form onSubmit={handleSubmit} className="space-y-6">
                                         {/* Informações do Prestador */}
-                                        <div className="mb-3">
-                                            <div className="alert alert-info d-flex align-items-center">
-                                                <i className="fas fa-user-circle me-2"></i>
+                                        <div>
+                                            <div className="bg-gray-900/50 border border-gray-600 text-white px-6 py-4 rounded-2xl flex items-center">
+                                                <span className="text-2xl mr-3">👤</span>
                                                 <div>
-                                                    <strong>Prestador:</strong> ID #{idPrestador || 'Carregando...'}
+                                                    <strong className="font-semibold">Prestador:</strong> <span className="text-gray-300">ID #{idPrestador || 'Carregando...'}</span>
                                                     <br />
-                                                    <small>Editando serviço ID #{id}</small>
+                                                    <small className="text-gray-400">Editando serviço ID #{id}</small>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="row">
-                                            <div className="col-md-12 mb-3">
-                                                <label htmlFor="id_servico_geral" className="form-label">
-                                                    Categoria do Serviço *
-                                                </label>
-                                                <select
-                                                    className="form-select"
-                                                    id="id_servico_geral"
-                                                    name="id_servico_geral"
-                                                    value={formData.id_servico_geral}
-                                                    onChange={handleInputChange}
-                                                    required
-                                                >
-                                                    <option value="">Selecione uma categoria</option>
-                                                    {loading ? (
-                                                        <option disabled>Carregando...</option>
-                                                    ) : (
-                                                        servicosGerais.map(servico => (
-                                                            <option key={servico.id} value={servico.id}>
-                                                                {servico.nome}
-                                                            </option>
-                                                        ))
-                                                    )}
-                                                </select>
-                                            </div>
+                                        <div>
+                                            <label htmlFor="id_servico_geral" className="block text-gray-300 font-medium tracking-wide mb-3">
+                                                Categoria do Serviço *
+                                            </label>
+                                            <select
+                                                className="w-full px-4 py-4 bg-gray-900/50 border border-gray-600 rounded-2xl text-white focus:border-gray-400 focus:ring-gray-400/50 focus:outline-none focus:ring-2 transition-all duration-300"
+                                                id="id_servico_geral"
+                                                name="id_servico_geral"
+                                                value={formData.id_servico_geral}
+                                                onChange={handleInputChange}
+                                                required
+                                            >
+                                                <option value="" className="bg-gray-800">Selecione uma categoria</option>
+                                                {loading ? (
+                                                    <option disabled className="bg-gray-800">Carregando...</option>
+                                                ) : (
+                                                    servicosGerais.map(servico => (
+                                                        <option key={servico.id} value={servico.id} className="bg-gray-800">
+                                                            {servico.nome}
+                                                        </option>
+                                                    ))
+                                                )}
+                                            </select>
                                         </div>
 
-                                        <div className="mb-3">
-                                            <label htmlFor="nome" className="form-label">
+                                        <div>
+                                            <label htmlFor="nome" className="block text-gray-300 font-medium tracking-wide mb-3">
                                                 Nome do Serviço *
                                             </label>
                                             <input
                                                 type="text"
-                                                className="form-control"
+                                                className="w-full px-4 py-4 bg-gray-900/50 border border-gray-600 rounded-2xl text-white placeholder-gray-400 focus:border-gray-400 focus:ring-gray-400/50 focus:outline-none focus:ring-2 transition-all duration-300"
                                                 id="nome"
                                                 name="nome"
                                                 value={formData.nome}
@@ -210,12 +208,12 @@ export default function EditarServico() {
                                             />
                                         </div>
 
-                                        <div className="mb-3">
-                                            <label htmlFor="descricao" className="form-label">
+                                        <div>
+                                            <label htmlFor="descricao" className="block text-gray-300 font-medium tracking-wide mb-3">
                                                 Descrição do Serviço *
                                             </label>
                                             <textarea
-                                                className="form-control"
+                                                className="w-full px-4 py-4 bg-gray-900/50 border border-gray-600 rounded-2xl text-white placeholder-gray-400 focus:border-gray-400 focus:ring-gray-400/50 focus:outline-none focus:ring-2 transition-all duration-300 resize-vertical"
                                                 id="descricao"
                                                 name="descricao"
                                                 value={formData.descricao}
@@ -226,15 +224,15 @@ export default function EditarServico() {
                                             ></textarea>
                                         </div>
 
-                                        <div className="mb-4">
-                                            <label htmlFor="preco" className="form-label">
+                                        <div>
+                                            <label htmlFor="preco" className="block text-gray-300 font-medium tracking-wide mb-3">
                                                 Preço (R$) *
                                             </label>
                                             <input
                                                 type="number"
                                                 step="0.01"
                                                 min="0"
-                                                className="form-control"
+                                                className="w-full px-4 py-4 bg-gray-900/50 border border-gray-600 rounded-2xl text-white placeholder-gray-400 focus:border-gray-400 focus:ring-gray-400/50 focus:outline-none focus:ring-2 transition-all duration-300"
                                                 id="preco"
                                                 name="preco"
                                                 value={formData.preco}
@@ -244,17 +242,19 @@ export default function EditarServico() {
                                             />
                                         </div>
 
-                                        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
                                             <button 
                                                 type="button" 
-                                                className="btn btn-outline-secondary me-md-2"
+                                                className="flex-1 border border-gray-600/50 text-gray-300 hover:bg-gray-700/50 hover:text-white px-6 py-3 rounded-2xl transition-all duration-300 backdrop-blur-sm font-medium"
                                                 onClick={() => navigate('/meus-servicos')}
                                             >
                                                 Cancelar
                                             </button>
-                                            <button type="submit" className="btn btn-warning">
-                                                <i className="fas fa-save me-2"></i>
-                                                Atualizar Serviço
+                                            <button 
+                                                type="submit" 
+                                                className="flex-1 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-white px-6 py-3 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-gray-500/25 shadow-xl font-semibold"
+                                            >
+                                                💾 Atualizar Serviço
                                             </button>
                                         </div>
                                     </form>

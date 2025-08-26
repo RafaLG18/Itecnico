@@ -12,6 +12,7 @@ import SolicitaServico from './pages/SolicitaServicos';
 import TelaHomeCliente from './pages/TelaHomeCliente';
 import TelaHomePrestador from './pages/TelaHomePrestador';
 import MeusServicos from './pages/MeusServicos';
+import MeusPedidos from './pages/MeusPedidos';
 import EditarServico from './pages/EditarServico';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/cadastroCliente" element={<CadastroCliente />} />
+        <Route path="/solicitaServicos" element={<SolicitaServico />} />
         <Route path="/cadastroCliente/solicitaServico" element={<SolicitaServico />} />
         <Route path="/cadastroPrestador" element={<CadastroPrestador />} />
         <Route path="/cadastroPrestador/cadastroServico" element={<CadastroServico />} />
@@ -28,6 +30,7 @@ function App() {
         <Route path="/homeCliente" element={<TelaHomeCliente />} />
         <Route path="/homePrestador" element={<TelaHomePrestador />} />
         <Route path="/meus-servicos" element={<MeusServicos />} />
+        <Route path="/meus-pedidos" element={<MeusPedidos />} />
         <Route path="/editar-servico/:id" element={<EditarServico />} />
       </Routes>
     </BrowserRouter>

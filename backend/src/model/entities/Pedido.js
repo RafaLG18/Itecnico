@@ -3,7 +3,7 @@ class Pedido {
     this._id = null;
     this._id_servico_prestado = null;
     this._id_usuario_cliente = null;
-    this._id_usuario_fornecedor = null;
+    this._id_usuario_prestador = null;
     this._data = null;
     this._preco = null;
   }
@@ -26,11 +26,11 @@ class Pedido {
   set id_usuario_cliente(value) {
     this._id_usuario_cliente = value;
   }
-  get id_usuario_fornecedor() {
-    return this._id_usuario_fornecedor;
+  get id_usuario_prestador() {
+    return this._id_usuario_prestador;
   }
-  set id_usuario_fornecedor(value) {
-    this._id_usuario_fornecedor = value;
+  set id_usuario_prestador(value) {
+    this._id_usuario_prestador = value;
   }
   get data() {
     return this._data;
