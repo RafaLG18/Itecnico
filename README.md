@@ -1,6 +1,6 @@
 # ITécnico - Sistema de Serviços Técnicos
 
-Sistema web desenvolvido em React + Node.js para conectar prestadores de serviços técnicos com clientes que necessitam desses serviços.
+Sistema web completo desenvolvido em React + Node.js para conectar prestadores de serviços técnicos com clientes que necessitam desses serviços. Plataforma full-stack com funcionalidades avançadas de gerenciamento de serviços e pedidos.
 
 ## 📋 Sobre o Projeto
 
@@ -11,20 +11,23 @@ O ITécnico é uma plataforma que facilita a conexão entre:
 ## 🚀 Tecnologias Utilizadas
 
 ### Frontend
-- **React** 19.1.0
-- **React Router DOM** 7.7.0 - Roteamento
-- **Bootstrap** 5.3.7 - Framework CSS
+- **React** 19.1.0 - Biblioteca principal
+- **React Router DOM** 7.7.0 - Roteamento SPA
+- **Tailwind CSS** 3.4.17 - Framework CSS moderno com design responsivo
+- **PostCSS** - Processamento CSS
+- **Autoprefixer** - Compatibilidade entre navegadores
 - **React Scripts** 5.0.1 - Build tools
 
 ### Backend
 - **Node.js** com **Express** 4.21.2
-- **PostgreSQL** - Banco de dados
+- **PostgreSQL** - Banco de dados relacional
 - **CORS** 2.8.5 - Cross-Origin Resource Sharing
-- **pg** 8.16.0 - Driver PostgreSQL
+- **pg** 8.16.0 - Driver PostgreSQL para Node.js
+- **ES6 Modules** - Sintaxe moderna de módulos
 
 ### Banco de Dados
-- **PostgreSQL** (containerizado com Docker)
-- Docker Compose para orquestração
+- **PostgreSQL** 13+ (containerizado com Docker)
+- Docker Compose para orquestração e configuração
 
 ## 📁 Estrutura do Projeto
 
@@ -86,41 +89,57 @@ Itecnico/
 
 ## 🛠️ Funcionalidades
 
-### Para Clientes
-- Cadastro de usuário
-- Login no sistema
-- Busca de serviços disponíveis
-- Solicitação de serviços
+### 🔵 Para Clientes
+- ✅ **Cadastro e autenticação** de usuário
+- ✅ **Login seguro** no sistema
+- ✅ **Exploração de serviços** disponíveis com busca e filtros
+- ✅ **Solicitação de serviços** com modal interativo
+- ✅ **Dashboard pessoal** com estatísticas em tempo real
+- ✅ **Meus Pedidos** - Visualização completa de solicitações
+- ✅ **Cancelamento de pedidos** com confirmação de segurança
+- ✅ **Interface responsiva** com design moderno
 
-### Para Prestadores
-- Cadastro de usuário
-- Login no sistema
-- Cadastro de serviços oferecidos
-- Visualização dos próprios serviços
-- **Edição de serviços existentes** ✨
-- Ativação/desativação de serviços
-- Gerenciamento de pedidos
+### 🟢 Para Prestadores
+- ✅ **Cadastro e autenticação** de usuário
+- ✅ **Login seguro** no sistema
+- ✅ **Cadastro de serviços** oferecidos
+- ✅ **Gerenciamento completo** - Visualização, edição e controle de status
+- ✅ **Dashboard avançado** com estatísticas e métricas
+- ✅ **Pedidos recebidos** - Visualização e gerenciamento de solicitações
+- ✅ **Ações sobre pedidos** - Aceitar, recusar e visualizar detalhes
+- ✅ **Interface intuitiva** com modals informativos
+
+### 🎨 Recursos de Interface
+- ✅ **Design responsivo** - Funciona em desktop, tablet e mobile
+- ✅ **Tema escuro moderno** com gradientes e efeitos visuais
+- ✅ **Animações suaves** com hover effects e transições
+- ✅ **Modais interativos** para ações detalhadas
+- ✅ **Feedback visual** com loading states e confirmações
+- ✅ **Navegação intuitiva** entre páginas
 
 ## 📡 API Endpoints
 
-### Autenticação
-- `POST /api/login` - Login de usuários
+### 🔐 Autenticação
+- `POST /api/login` - Login de usuários com validação
 
-### Usuários
-- `POST /api/cadastro-usuario` - Cadastro de usuários
+### 👥 Usuários
+- `POST /api/cadastro-usuario` - Cadastro de novos usuários
 
-### Serviços Gerais
+### 🏷️ Serviços Gerais (Categorias)
 - `GET /api/cadastro-servico-geral` - Listar categorias de serviços
 - `POST /api/cadastro-servico-geral` - Criar nova categoria
 
-### Serviços Prestados
-- `GET /api/cadastro-servico-prestado` - Listar todos os serviços
-- `GET /api/cadastro-servico-prestado/:id` - **Buscar serviço por ID** ✨
+### 🛠️ Serviços Prestados
+- `GET /api/cadastro-servico-prestado` - Listar todos os serviços disponíveis
+- `GET /api/cadastro-servico-prestado/:id` - Buscar serviço específico por ID
 - `POST /api/cadastro-servico-prestado` - Cadastrar novo serviço
-- `PUT /api/cadastro-servico-prestado/:id` - **Atualizar serviço existente** ✨
+- `PUT /api/cadastro-servico-prestado/:id` - Atualizar serviço existente
 
-### Pedidos
-- `GET/POST /api/cadastro-pedido` - Gerenciamento de pedidos
+### 📋 Pedidos
+- `POST /api/cadastro-pedido` - Criar nova solicitação de serviço
+- `GET /api/cadastro-pedido/cliente/:id_cliente` - ✨ **Buscar pedidos do cliente**
+- `GET /api/cadastro-pedido/prestador/:id_prestador` - ✨ **Buscar pedidos do prestador**
+- `DELETE /api/cadastro-pedido/:id` - ✨ **Cancelar pedido** (cliente)
 
 ## ⚙️ Instalação e Execução
 
@@ -176,12 +195,13 @@ As tabelas são criadas automaticamente através do script `create-tables.sql` d
 - `/cadastro` - Seleção de tipo de cadastro
 - `/cadastroCliente` - Cadastro de cliente
 - `/cadastroPrestador` - Cadastro de prestador
-- `/homeCliente` - Dashboard do cliente
-- `/homePrestador` - Dashboard do prestador
-- `/cadastroCliente/solicitaServico` - Solicitação de serviços
-- `/cadastroPrestador/cadastroServico` - Cadastro de serviços
+- `/homeCliente` - Dashboard do cliente com estatísticas em tempo real
+- `/homePrestador` - Dashboard do prestador com pedidos recebidos
+- `/solicitaServicos` - **Solicitação de serviços pelos clientes** ✨
+- `/cadastroServico` - Cadastro de serviços pelo prestador
 - `/meus-servicos` - **Lista de serviços do prestador** ✨
 - `/editar-servico/:id` - **Edição de serviços existentes** ✨
+- `/meus-pedidos` - **Lista de pedidos do cliente** ✨
 
 ## 🏗️ Arquitetura
 
@@ -198,10 +218,14 @@ As tabelas são criadas automaticamente através do script `create-tables.sql` d
 ## 📝 Scripts Disponíveis
 
 ### Backend
-- `node src/main.js` - Inicia o servidor
+- `cd backend/` - Navegar para diretório do backend
+- `npm install` - Instalar dependências
+- `node src/main.js` - Inicia o servidor em http://localhost:3001
 
 ### Frontend
-- `npm start` - Inicia em modo desenvolvimento
+- `cd frontend/` - Navegar para diretório do frontend
+- `npm install` - Instalar dependências
+- `npm start` - Inicia em modo desenvolvimento em http://localhost:3000
 - `npm run build` - Build para produção
 - `npm test` - Executa testes
 - `npm run eject` - Ejeta configurações
