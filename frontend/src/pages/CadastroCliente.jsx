@@ -51,68 +51,73 @@ export default function CadastroCliente() {
     };
 
     return (
-        <div className="container mt-5">
-            <div className="row justify-content-center">
-                <div className="col-md-8 col-lg-6">
-                    <div className="card shadow">
-                        <div className="card-header bg-primary text-white">
-                            <h2 className="text-center mb-0">Cadastro de Cliente</h2>
-                        </div>
-                        <div className="card-body">
-                            <form onSubmit={handleSubmit}>
-                                <div className="mb-3">
-                                    <label htmlFor="nome" className="form-label">Nome Completo</label>
-                                    <input
-                                        type="text"
-                                        className={`form-control ${errors.nome ? 'is-invalid' : ''}`}
-                                        id="nome"
-                                        name="nome"
-                                        value={formData.nome}
-                                        onChange={handleChange}
-                                    />
-                                    {errors.nome && <div className="invalid-feedback">{errors.nome}</div>}
-                                </div>
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center px-4 py-8">
+            <div className="w-full max-w-lg">
+                <div className="bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-2xl shadow-gray-900/50 border border-gray-700/50 ring-1 ring-gray-600/20 transform transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-gray-500/25">
+                    <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-8 py-8 rounded-t-2xl">
+                        <h2 className="text-center text-4xl font-bold tracking-wide">Cadastro de Cliente</h2>
+                        <p className="text-center text-gray-300 mt-2 font-medium">Crie sua conta para solicitar serviços</p>
+                    </div>
+                    <div className="p-8">
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            <div>
+                                <label htmlFor="nome" className="block text-gray-300 font-medium tracking-wide mb-3">Nome Completo</label>
+                                <input
+                                    type="text"
+                                    className={`w-full px-4 py-4 bg-gray-900/50 border rounded-2xl text-white placeholder-gray-400 focus:border-gray-400 focus:ring-gray-400/50 focus:outline-none focus:ring-2 transition-all duration-300 ${errors.nome ? 'border-red-500 ring-red-500/50' : 'border-gray-600'}`}
+                                    id="nome"
+                                    name="nome"
+                                    value={formData.nome}
+                                    onChange={handleChange}
+                                    placeholder="Digite seu nome completo"
+                                />
+                                {errors.nome && <div className="text-red-400 text-sm mt-2 font-medium">{errors.nome}</div>}
+                            </div>
 
-                                <div className="mb-3">
-                                    <label htmlFor="cpf" className="form-label">CPF</label>
-                                    <input
-                                        type="text"
-                                        className={`form-control ${errors.cpf ? 'is-invalid' : ''}`}
-                                        id="cpf"
-                                        name="cpf"
-                                        value={formData.cpf}
-                                        onChange={handleChange}
-                                    />
-                                    {errors.cpf && <div className="invalid-feedback">{errors.cpf}</div>}
-                                </div>
+                            <div>
+                                <label htmlFor="cpf" className="block text-gray-300 font-medium tracking-wide mb-3">CPF</label>
+                                <input
+                                    type="text"
+                                    className={`w-full px-4 py-4 bg-gray-900/50 border rounded-2xl text-white placeholder-gray-400 focus:border-gray-400 focus:ring-gray-400/50 focus:outline-none focus:ring-2 transition-all duration-300 ${errors.cpf ? 'border-red-500 ring-red-500/50' : 'border-gray-600'}`}
+                                    id="cpf"
+                                    name="cpf"
+                                    value={formData.cpf}
+                                    onChange={handleChange}
+                                    placeholder="000.000.000-00"
+                                />
+                                {errors.cpf && <div className="text-red-400 text-sm mt-2 font-medium">{errors.cpf}</div>}
+                            </div>
 
-                                <div className="mb-3">
-                                    <label htmlFor="senha" className="form-label">Senha</label>
-                                    <input
-                                        type="password"
-                                        className={`form-control ${errors.senha ? 'is-invalid' : ''}`}
-                                        id="senha"
-                                        name="senha"
-                                        value={formData.senha}
-                                        onChange={handleChange}
-                                    />
-                                    {errors.senha && <div className="invalid-feedback">{errors.senha}</div>}
-                                </div>
+                            <div>
+                                <label htmlFor="senha" className="block text-gray-300 font-medium tracking-wide mb-3">Senha</label>
+                                <input
+                                    type="password"
+                                    className={`w-full px-4 py-4 bg-gray-900/50 border rounded-2xl text-white placeholder-gray-400 focus:border-gray-400 focus:ring-gray-400/50 focus:outline-none focus:ring-2 transition-all duration-300 ${errors.senha ? 'border-red-500 ring-red-500/50' : 'border-gray-600'}`}
+                                    id="senha"
+                                    name="senha"
+                                    value={formData.senha}
+                                    onChange={handleChange}
+                                    placeholder="Digite uma senha segura"
+                                />
+                                {errors.senha && <div className="text-red-400 text-sm mt-2 font-medium">{errors.senha}</div>}
+                            </div>
 
-                                <div className="d-grid gap-2">
-                                    <button type="submit" className="btn btn-primary btn-lg">
-                                        Cadastrar
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="btn btn-outline-secondary"
-                                        onClick={() => navigate('/')}
-                                    >
-                                        Voltar
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                            <div className="space-y-4 pt-4">
+                                <button 
+                                    type="submit" 
+                                    className="w-full bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-800 text-white font-semibold py-4 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-gray-500/25 shadow-2xl text-lg"
+                                >
+                                    Criar Conta
+                                </button>
+                                <button
+                                    type="button"
+                                    className="w-full border border-gray-600/50 text-gray-300 hover:bg-gray-700/50 hover:text-white font-medium py-3 px-6 rounded-2xl transition-all duration-300 backdrop-blur-sm"
+                                    onClick={() => navigate('/')}
+                                >
+                                    Voltar
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
