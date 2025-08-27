@@ -1,70 +1,211 @@
-# Getting Started with Create React App
+# ITécnico Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Frontend do sistema ITécnico desenvolvido em React - Uma plataforma moderna para conectar prestadores de serviços técnicos com clientes.
 
-## Available Scripts
+## 🚀 Tecnologias
 
-In the project directory, you can run:
+- **React** 19.1.0 - Biblioteca JavaScript para interfaces
+- **React Router DOM** 7.7.0 - Roteamento SPA
+- **Tailwind CSS** 3.4.17 - Framework CSS utility-first
+- **React Scripts** 5.0.1 - Toolchain para desenvolvimento
+- **PostCSS** + **Autoprefixer** - Processamento CSS
 
-### `npm start`
+## 📁 Estrutura do Projeto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+src/
+├── pages/                 # Páginas da aplicação
+│   ├── Home.jsx          # Página inicial
+│   ├── Login.jsx         # Tela de login
+│   ├── TelaCadastro.jsx  # Seleção de tipo de cadastro
+│   ├── CadastroCliente.jsx
+│   ├── CadastroPrestador.jsx
+│   ├── TelaHomeCliente.jsx    # Dashboard do cliente
+│   ├── TelaHomePrestador.jsx  # Dashboard do prestador
+│   ├── SolicitaServicos.jsx   # Solicitação de serviços
+│   ├── CadastrarServico.jsx   # Cadastro de serviços
+│   ├── EditarServico.jsx      # Edição de serviços
+│   ├── MeusServicos.jsx       # Lista de serviços do prestador
+│   └── MeusPedidos.jsx        # Lista de pedidos do cliente
+├── App.js                # Componente principal com rotas
+├── App.css              # Estilos globais
+└── index.js             # Ponto de entrada da aplicação
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🎨 Design System
 
-### `npm test`
+### Paleta de Cores
+- **Primary**: Gradientes roxo/azul (#8b5cf6, #3b82f6)
+- **Background**: Tons escuros (#1a1a2e, #16213e)
+- **Text**: Branco e tons de cinza
+- **Accent**: Verde para sucesso, vermelho para erros
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Componentes Principais
+- **Cards responsivos** com hover effects
+- **Modais interativos** para ações detalhadas
+- **Dashboards** com estatísticas em tempo real
+- **Formulários** com validação visual
+- **Loading states** e feedback visual
 
-### `npm run build`
+## 🌐 Rotas da Aplicação
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Rota | Componente | Descrição |
+|------|------------|-----------|
+| `/` | Home | Página inicial |
+| `/login` | Login | Autenticação |
+| `/cadastro` | TelaCadastro | Seleção de tipo |
+| `/cadastroCliente` | CadastroCliente | Cadastro cliente |
+| `/cadastroPrestador` | CadastroPrestador | Cadastro prestador |
+| `/homeCliente` | TelaHomeCliente | Dashboard cliente |
+| `/homePrestador` | TelaHomePrestador | Dashboard prestador |
+| `/solicitaServicos` | SolicitaServicos | Solicitação de serviços |
+| `/cadastroServico` | CadastrarServico | Cadastro de serviços |
+| `/meus-servicos` | MeusServicos | Serviços do prestador |
+| `/editar-servico/:id` | EditarServico | Edição de serviço |
+| `/meus-pedidos` | MeusPedidos | Pedidos do cliente |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠️ Scripts Disponíveis
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Desenvolvimento
+```bash
+npm start
+```
+Inicia a aplicação em modo de desenvolvimento em `http://localhost:3000`
 
-### `npm run eject`
+### Build de Produção
+```bash
+npm run build
+```
+Cria uma versão otimizada para produção na pasta `build/`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Testes
+```bash
+npm test
+```
+Executa os testes em modo interativo
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Análise do Bundle
+```bash
+npm run build
+npx serve -s build
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📱 Funcionalidades
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Para Clientes
+- ✅ Cadastro e login
+- ✅ Dashboard com estatísticas
+- ✅ Exploração de serviços
+- ✅ Solicitação de serviços via modal
+- ✅ Visualização de pedidos
+- ✅ Cancelamento de pedidos
 
-## Learn More
+### Para Prestadores
+- ✅ Cadastro e login
+- ✅ Dashboard com métricas
+- ✅ Cadastro de serviços
+- ✅ Edição de serviços
+- ✅ Gerenciamento de pedidos
+- ✅ Controle de status
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🔧 Configuração
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Pré-requisitos
+- Node.js 16+
+- npm ou yarn
 
-### Code Splitting
+### Instalação
+```bash
+# Clone o repositório (se necessário)
+cd frontend/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Instale as dependências
+npm install
 
-### Analyzing the Bundle Size
+# Inicie o servidor de desenvolvimento
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Variáveis de Ambiente
+Crie um arquivo `.env` no diretório raiz do frontend:
 
-### Making a Progressive Web App
+```env
+REACT_APP_API_URL=http://localhost:3001
+REACT_APP_ENV=development
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🎯 Integração com Backend
 
-### Advanced Configuration
+O frontend consome a API REST do backend através das seguintes integrações:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Autenticação**: `POST /api/login`
+- **Usuários**: `POST /api/cadastro-usuario`
+- **Serviços**: `GET/POST/PUT /api/cadastro-servico-prestado`
+- **Pedidos**: `GET/POST/DELETE /api/cadastro-pedido`
 
-### Deployment
+## 📚 Padrões de Desenvolvimento
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Estado Local
+Utiliza `useState` e `useEffect` para gerenciamento de estado das páginas
 
-### `npm run build` fails to minify
+### Navegação
+React Router DOM com navegação programática via `useNavigate`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Requisições HTTP
+`fetch` API nativa para comunicação com o backend
+
+### Estilos
+Tailwind CSS com classes utilitárias e componentes customizados
+
+## 🔄 Estados da Aplicação
+
+### Estados de Carregamento
+- Loading spinners durante requisições
+- Estados vazios para listas
+- Feedback visual para ações do usuário
+
+### Tratamento de Erros
+- Mensagens de erro contextualizadas
+- Validação de formulários
+- Fallbacks para falhas de rede
+
+## 🚀 Deployment
+
+### Build
+```bash
+npm run build
+```
+
+### Servir Estático
+```bash
+# Com serve
+npx serve -s build
+
+# Com nginx (exemplo)
+server {
+    location / {
+        root /path/to/build;
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+
+## 🔍 Troubleshooting
+
+### Problemas Comuns
+
+**Erro de CORS**
+- Verifique se o backend está rodando
+- Confirme a configuração de CORS no servidor
+
+**Falha no Build**
+- Limpe o cache: `npm start -- --reset-cache`
+- Reinstale dependências: `rm -rf node_modules && npm install`
+
+**Rotas não funcionam**
+- Verifique se todas as rotas estão definidas no App.js
+- Confirme que o React Router está configurado corretamente
+
+## 📄 Licença
+
+ISC - Projeto acadêmico

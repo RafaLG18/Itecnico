@@ -86,6 +86,7 @@ Itecnico/
 - `id_servico_prestado` (FK → servico_prestado.id)
 - `data` (VARCHAR)
 - `preco` (INTEGER)
+- `status` (VARCHAR) - Estados: 'pendente', 'aceito', 'recusado', 'concluido', 'cancelado'
 
 ## 🛠️ Funcionalidades
 
@@ -107,6 +108,7 @@ Itecnico/
 - ✅ **Dashboard avançado** com estatísticas e métricas
 - ✅ **Pedidos recebidos** - Visualização e gerenciamento de solicitações
 - ✅ **Ações sobre pedidos** - Aceitar, recusar e visualizar detalhes
+- ✅ **Controle de status** - Sistema completo de gerenciamento de status de pedidos
 - ✅ **Interface intuitiva** com modals informativos
 
 ### 🎨 Recursos de Interface
@@ -140,6 +142,7 @@ Itecnico/
 - `GET /api/cadastro-pedido/cliente/:id_cliente` - ✨ **Buscar pedidos do cliente**
 - `GET /api/cadastro-pedido/prestador/:id_prestador` - ✨ **Buscar pedidos do prestador**
 - `DELETE /api/cadastro-pedido/:id` - ✨ **Cancelar pedido** (cliente)
+- `PUT /api/cadastro-pedido/:id/status` - ✨ **Atualizar status do pedido**
 
 ## ⚙️ Instalação e Execução
 
@@ -177,12 +180,14 @@ O frontend estará rodando em `http://localhost:3000`
 
 ## 🔧 Configuração do Banco
 
-### Credenciais PostgreSQL
+### Credenciais PostgreSQL (Desenvolvimento)
 - **Host**: localhost
 - **Porta**: 5432
 - **Database**: itecnico
 - **Usuário**: itecnico
 - **Senha**: itecnico123
+
+> ⚠️ **Nota de Segurança**: Essas credenciais são apenas para desenvolvimento. Em produção, use variáveis de ambiente seguras.
 
 ### Inicialização
 As tabelas são criadas automaticamente através do script `create-tables.sql` durante a inicialização do container.
@@ -218,17 +223,21 @@ As tabelas são criadas automaticamente através do script `create-tables.sql` d
 ## 📝 Scripts Disponíveis
 
 ### Backend
-- `cd backend/` - Navegar para diretório do backend
-- `npm install` - Instalar dependências
-- `node src/main.js` - Inicia o servidor em http://localhost:3001
+```bash
+cd backend/
+npm install          # Instalar dependências
+npm start           # Inicia o servidor em http://localhost:3001
+npm run dev         # Alias para npm start
+```
 
 ### Frontend
-- `cd frontend/` - Navegar para diretório do frontend
-- `npm install` - Instalar dependências
-- `npm start` - Inicia em modo desenvolvimento em http://localhost:3000
-- `npm run build` - Build para produção
-- `npm test` - Executa testes
-- `npm run eject` - Ejeta configurações
+```bash
+cd frontend/
+npm install         # Instalar dependências
+npm start          # Inicia em modo desenvolvimento em http://localhost:3000
+npm run build      # Build para produção
+npm test           # Executa testes
+```
 
 ## 🔒 Considerações de Segurança
 
@@ -238,29 +247,51 @@ As tabelas são criadas automaticamente através do script `create-tables.sql` d
 
 ## ⚠️ Pontos de Melhoria
 
-1. **Segurança**:
-   - Hash de senhas (bcrypt)
-   - JWT para autenticação
-   - Validação de entrada mais robusta
+### 🔒 Segurança
+- [ ] Hash de senhas (bcrypt)
+- [ ] JWT para autenticação
+- [ ] Validação de entrada mais robusta
+- [ ] Sanitização de dados de entrada
+- [ ] Rate limiting para APIs
 
-2. **Banco de Dados**:
-   - Uso de DECIMAL para valores monetários
-   - Índices para otimização
-   - Migrations estruturadas
+### 💾 Banco de Dados
+- [ ] Uso de DECIMAL para valores monetários
+- [ ] Índices para otimização de consultas
+- [ ] Migrations estruturadas
+- [ ] Backup automatizado
+- [ ] Logs de auditoria
 
-3. **Frontend**:
-   - Context API para gerenciamento de estado
-   - Componentes reutilizáveis
-   - Tratamento de erros
+### 🎨 Frontend
+- [ ] Context API para gerenciamento de estado global
+- [ ] Componentes reutilizáveis (Design System)
+- [ ] Tratamento de erros mais robusto
+- [ ] Loading states aprimorados
+- [ ] Paginação para listagens
+- [ ] PWA (Progressive Web App)
 
-4. **Geral**:
-   - Testes automatizados
-   - CI/CD
-   - Documentação da API (Swagger)
+### 🚀 DevOps & Qualidade
+- [ ] Testes automatizados (unitários e integração)
+- [ ] CI/CD pipeline
+- [ ] Documentação da API (Swagger/OpenAPI)
+- [ ] Monitoramento e logs
+- [ ] Docker para desenvolvimento
+- [ ] Análise de código estático
+
+### 📱 Usabilidade
+- [ ] Notificações push
+- [ ] Sistema de avaliações
+- [ ] Chat entre cliente e prestador
+- [ ] Geolocalização de serviços
+- [ ] Histórico de interações
 
 ## 👥 Desenvolvimento
 
-Este projeto foi desenvolvido como parte de um projeto acadêmico de Desenvolvimento Web.
+Este projeto foi desenvolvido como parte de um projeto acadêmico de Desenvolvimento Web, implementando um sistema completo de marketplace de serviços técnicos.
+
+### Status do Projeto
+- ✅ **Versão atual**: 1.0.0
+- ✅ **Status**: Funcional e em desenvolvimento
+- ✅ **Última atualização**: Implementação do sistema de status de pedidos
 
 ## 📄 Licença
 
