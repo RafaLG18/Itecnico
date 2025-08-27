@@ -51,5 +51,9 @@ class repositorioGeral {
   async deletePedido(id) {
     return await this.pedidoRepository.deletePedido(id);
   }
+
+  async updatePedidoStatus(id, status) {
+    return await this.pedidoRepository.updatePedidoStatus(id, status);
+  }
 }
 export default repositorioGeral;

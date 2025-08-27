@@ -121,6 +121,49 @@ const CadastroPedidoController = {
       });
     }
   },
+
+  atualizarStatusPedido: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+      
+      if (!id) {
+        return res.status(400).json({
+          erro: "ID do pedido é obrigatório"
+        });
+      }
+
+      if (!status) {
+        return res.status(400).json({
+          erro: "Status é obrigatório"
+        });
+      }
+
+      const statusValidos = ['Pendente', 'Aceito', 'Recusado', 'Concluído'];
+      if (!statusValidos.includes(status)) {
+        return res.status(400).json({
+          erro: "Status inválido. Status válidos: " + statusValidos.join(', ')
+        });
+      }
+
+      const atualizado = await repo.updatePedidoStatus(id, status);
+
+      if (atualizado) {
+        return res.status(200).json({
+          mensagem: `Status do pedido atualizado para '${status}' com sucesso`
+        });
+      } else {
+        return res.status(404).json({
+          erro: "Pedido não encontrado"
+        });
+      }
+    } catch (error) {
+      console.error("Erro ao atualizar status do pedido:", error);
+      return res.status(500).json({
+        erro: "Erro interno do servidor"
+      });
+    }
+  },
 };
 
 export default CadastroPedidoController;

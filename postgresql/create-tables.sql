@@ -33,7 +33,8 @@ CREATE TABLE "pedido"(
     "id_usuario_prestador" INTEGER NOT NULL,
     "id_servico_prestado" INTEGER NOT NULL,
     "data" VARCHAR(255) NOT NULL, -- Renomeado para evitar conflito com palavra reservada, e removida vírgula final
-    "preco" INTEGER NOT NULL -- Considerar DECIMAL ou NUMERIC para valores monetários
+    "preco" INTEGER NOT NULL, -- Considerar DECIMAL ou NUMERIC para valores monetários
+    "status" VARCHAR(50) NOT NULL DEFAULT 'Pendente' -- Status do pedido: Pendente, Aceito, Recusado, Concluído
 );
 ALTER TABLE "pedido" ADD PRIMARY KEY("id"); -- Correção: Definindo PK para a tabela 'pedido'
 ALTER TABLE "pedido" ADD CONSTRAINT "fk_pedido_usuario_cliente" FOREIGN KEY("id_usuario_cliente") REFERENCES "usuario"("id");

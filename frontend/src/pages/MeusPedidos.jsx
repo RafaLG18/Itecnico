@@ -30,7 +30,7 @@ export default function MeusPedidos() {
                     descricao: pedido.servico_descricao,
                     prestadorId: pedido.id_usuario_prestador,
                     servicoId: pedido.id_servico_prestado,
-                    status: 'Pendente' // Por enquanto todos como pendente
+                    status: pedido.status || 'Pendente'
                 }));
                 setPedidos(pedidosFormatados);
             } else {
