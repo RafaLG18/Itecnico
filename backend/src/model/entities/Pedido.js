@@ -6,6 +6,7 @@ class Pedido {
     this._id_usuario_prestador = null;
     this._data = null;
     this._preco = null;
+    this._status = 'Pendente';
   }
 
   get id() {
@@ -43,6 +44,12 @@ class Pedido {
   }
   set preco(value) {
     this._preco = value;
+  }
+  get status() {
+    return this._status;
+  }
+  set status(value) {
+    this._status = value;
   }
 }
 

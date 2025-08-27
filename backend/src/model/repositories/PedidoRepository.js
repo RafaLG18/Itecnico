@@ -7,8 +7,8 @@ class PedidoRepository{
   async setPedido(pedido) {
     let client
     const query = `
-      INSERT INTO pedido (id_usuario_cliente, id_usuario_prestador, id_servico_prestado, data, preco)
-      VALUES($1, $2, $3, $4, $5)
+      INSERT INTO pedido (id_usuario_cliente, id_usuario_prestador, id_servico_prestado, data, preco, status)
+      VALUES($1, $2, $3, $4, $5, $6)
     `;
     
     const values = [
@@ -16,7 +16,8 @@ class PedidoRepository{
       pedido.id_usuario_prestador,
       pedido.id_servico_prestado,
       pedido.data,
-      pedido.preco || 0
+      pedido.preco || 0,
+      pedido.status || 'Pendente'
     ];
     console.log(values)
     try {
@@ -42,6 +43,7 @@ class PedidoRepository{
         p.id_servico_prestado,
         p.data,
         p.preco,
+        p.status,
         u.nome as cliente_nome,
         sp.nome as servico_nome,
         sp.descricao as servico_descricao
@@ -76,6 +78,7 @@ class PedidoRepository{
         p.id_servico_prestado,
         p.data,
         p.preco,
+        p.status,
         up.nome as prestador_nome,
         sp.nome as servico_nome,
         sp.descricao as servico_descricao
@@ -110,6 +113,24 @@ class PedidoRepository{
       return result.rowCount > 0;
     } catch (err) {
       console.error("Erro ao cancelar pedido:", err);
+      throw err;
+    } finally {
+      if (client) {
+        client.release();
+      }
+    }
+  }
+
+  async updatePedidoStatus(id, status) {
+    let client;
+    const query = `UPDATE pedido SET status = $1 WHERE id = $2`;
+    
+    try {
+      client = await this.conn.getClient();
+      const result = await client.query(query, [status, id]);
+      return result.rowCount > 0;
+    } catch (err) {
+      console.error("Erro ao atualizar status do pedido:", err);
       throw err;
     } finally {
       if (client) {

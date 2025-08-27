@@ -8,5 +8,6 @@ router.post("/", CadastroPedidoController.cadastrarPedido);
 router.get("/prestador/:id_prestador", CadastroPedidoController.getPedidosByPrestador);
 router.get("/cliente/:id_cliente", CadastroPedidoController.getPedidosByCliente);
 router.delete("/:id", CadastroPedidoController.cancelarPedido);
+router.put("/:id/status", CadastroPedidoController.atualizarStatusPedido);
 
 export default router;

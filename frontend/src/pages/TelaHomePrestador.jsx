@@ -55,12 +55,23 @@ export default function TelaHomePrestador() {
 
     const aceitarPedido = async (pedidoId) => {
         try {
-            // Aqui você pode implementar a lógica para aceitar o pedido
-            // Por exemplo, atualizar o status do pedido no backend
-            alert('Pedido aceito com sucesso!');
-            
-            // Recarregar a lista
-            await carregarServicosSolicitados();
+            const response = await fetch(`http://localhost:3001/api/cadastro-pedido/${pedidoId}/status`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: 'Aceito' }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert('Pedido aceito com sucesso!');
+                // Recarregar a lista
+                await carregarServicosSolicitados();
+            } else {
+                alert(`Erro ao aceitar pedido: ${data.erro || 'Erro desconhecido'}`);
+            }
         } catch (error) {
             console.error('Erro ao aceitar pedido:', error);
             alert('Erro ao aceitar pedido. Tente novamente.');
@@ -69,11 +80,23 @@ export default function TelaHomePrestador() {
 
     const recusarPedido = async (pedidoId) => {
         try {
-            // Aqui você pode implementar a lógica para recusar o pedido
-            alert('Pedido recusado.');
-            
-            // Recarregar a lista
-            await carregarServicosSolicitados();
+            const response = await fetch(`http://localhost:3001/api/cadastro-pedido/${pedidoId}/status`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: 'Recusado' }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert('Pedido recusado com sucesso.');
+                // Recarregar a lista
+                await carregarServicosSolicitados();
+            } else {
+                alert(`Erro ao recusar pedido: ${data.erro || 'Erro desconhecido'}`);
+            }
         } catch (error) {
             console.error('Erro ao recusar pedido:', error);
             alert('Erro ao recusar pedido. Tente novamente.');
